@@ -165,6 +165,12 @@ const contatti = [
 new Vue ({
   el: '#app',
   data: {
-      contacts: contatti
+      contacts: contatti,
+      activeContact: undefined
+  },
+  methods: {
+      setActiveUser(contact){
+          this.activeContact = contact
+      }
   }
 })
