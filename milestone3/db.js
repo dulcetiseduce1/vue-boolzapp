@@ -162,15 +162,47 @@ const contatti = [
   },
 ];
 
-new Vue ({
-  el: '#app',
+new Vue({
+  el: "#app",
   data: {
-      contacts: contatti,
-      activeContact: undefined
+    contacts: contatti,
+    activeContact: undefined,
+    actualMessage: null,
+    currentSearch: undefined,
   },
   methods: {
-      setActiveUser(contact){
-          this.activeContact = contact
+    setActiveUser(contact) {
+      this.activeContact = contact;
+    },
+    
+    // messaggio utente
+    sendMessage(message) {
+      this.activeContact.messages.push({
+        date: "ora",
+        message: message,
+        status: "sent",
+      });
+
+      // messaggio ok
+      this.actualMessage = null;
+      setTimeout(() => {
+        this.activeContact.messages.push({
+          date: "ora",
+          message: "Ok",
+          status: "received",
+        });
+      }, 1000);
+    },
+
+    // ricerca
+    searchContacts(contact) {
+      if (this.currentSearch == null || this.currentSearch == undefined) {
+        return true;
       }
-  }
-})
+      const lowerName = contact.name.toLowerCase();
+      const lowerSearch = this.currentSearch.toLowerCase();
+
+      return lowerName.includes(lowerSearch);
+    },
+  },
+});
