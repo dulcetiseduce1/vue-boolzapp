@@ -193,16 +193,5 @@ new Vue({
         });
       }, 1000);
     },
-
-    // ricerca
-    searchContacts(contact) {
-      if (this.currentSearch == null || this.currentSearch == undefined) {
-        return true;
-      }
-      const lowerName = contact.name.toLowerCase();
-      const lowerSearch = this.currentSearch.toLowerCase();
-
-      return lowerName.includes(lowerSearch);
-    },
   },
 });
